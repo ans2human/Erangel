@@ -36,7 +36,7 @@
                                     <td>{{ song.song_title }}</td>
                                     <td>{{ song.album.artist }}</td>
                                     <td>
-                                        <a target="_blank" href="{{ song.audio_file.url }}">
+                                        <a target="_blank">
                                             <button type="button" class="btn btn-success btn-xs">
                                                 <span class="glyphicon glyphicon-play"></span>&nbsp; Play
                                             </button>
@@ -62,5 +62,24 @@
 
     </div>
 
+
+
 </div>
+<script type='text/javascript'>
+    $(document).ready(function(){
+       $('button.btn-success').on('click',function(){
+        $('div.panel-body').append(`
+            <div class='popup'>
+                           
+            <audio controls>
+              <source src="{{ song.audio_file.url }}" type="audio/ogg">
+            Your browser does not support the audio element.
+            </audio>
+            </div>
+            `);
+       });
+    });
+</script>
 {% endblock %}
+
+
